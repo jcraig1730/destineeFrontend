@@ -1,0 +1,80 @@
+@import "./variables.scss";
+
+.itemDetail {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 100px;
+
+  > * {
+    flex-basis: 50%;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  .back {
+    background: $dark-green;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #eee;
+    font-size: 1.5em;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    z-index: 2;
+  }
+
+  .imageWrapper {
+  }
+
+  .info {
+    width: 100%;
+    font-size: 1.85em;
+
+    > * {
+      margin: 10px;
+    }
+    .title {
+      font-size: 1.25em;
+    }
+
+    .price {
+      font-weight: 400;
+    }
+
+    .description {
+    }
+
+    .btn {
+      width: 90%;
+      background: $blue;
+      padding: 20px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.9em;
+      color: #eee;
+      cursor: pointer;
+      .cartIcon {
+      }
+    }
+  }
+  .imagesWrapper {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+    .thumbnail {
+      margin: 10px;
+    }
+  }
+}

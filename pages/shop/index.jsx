@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "../styles/shop.module.scss";
-import { getShopContent } from "../helpers";
-import CategoryList from "../components/shopPageComponents/CategoryList";
+import styles from "../../styles/shop.module.scss";
+import { getShopContent } from "../../helpers";
+import CategoryList from "../../components/shopPageComponents/CategoryList";
 
 const Shop = ({ categories }) => {
   return (
