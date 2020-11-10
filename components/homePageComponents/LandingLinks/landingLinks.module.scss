@@ -24,6 +24,7 @@
     height: 700px;
     background-repeat: no-repeat !important;
     background-size: cover !important;
+    cursor: pointer;
 
     &:nth-of-type(2) {
       flex-direction: row-reverse;
