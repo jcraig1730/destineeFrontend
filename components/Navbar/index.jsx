@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./navbar.module.scss";
 import MobileMenu from "./MobileMenu";
 import FullMenu from "./FullMenu";
+import Link from "next/link";
 
 const links = ["shop", "art", "about"];
 
@@ -28,12 +29,14 @@ const Navbar = (props) => {
     }, [useMobileMenu]);
   return (
     <div className={styles.navbar}>
-      <div className={styles.logo}>
-        <img
-          src="https://res.cloudinary.com/destineesnecessities/image/upload/v1604699761/LogoMakr-3jROLT_wncmje.png"
-          alt="Destinee's store logo"
-        />
-      </div>
+      <Link href="/">
+        <div className={styles.logo}>
+          <img
+            src="https://res.cloudinary.com/destineesnecessities/image/upload/v1604699761/LogoMakr-3jROLT_wncmje.png"
+            alt="Destinee's store logo"
+          />
+        </div>
+      </Link>
       <div className={styles.links}>
         {useMobileMenu ? (
           <MobileMenu
