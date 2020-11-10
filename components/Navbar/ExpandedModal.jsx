@@ -22,7 +22,7 @@ const ExpandedModal = (props) => {
       <div className={styles.modal}>
         <div className={styles.expandedLinks}>
           {props.links.map((link) => (
-            <div className={styles.expandedLink}>
+            <div className={styles.expandedLink} key={`lnf-${link}`}>
               <Link href={`/${link}`}>{link}</Link>
             </div>
           ))}

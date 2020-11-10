@@ -4,7 +4,7 @@ import styles from "./navbar.module.scss";
 
 const FullMenu = (props) => {
   return props.links.map((link) => (
-    <div className={styles.link}>
+    <div className={styles.link} key={`lnm-${link}`}>
       <Link href={`/${link}`}>{link}</Link>
     </div>
   ));
