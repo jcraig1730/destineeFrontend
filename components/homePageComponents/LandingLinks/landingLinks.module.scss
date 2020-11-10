@@ -1,0 +1,45 @@
+@import "../../../styles/variables.scss";
+
+.landingLinks {
+  width: 100%;
+  height: fit-content;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .landingLink {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #eee;
+    font-size: 5em;
+    width: 100%;
+    height: 700px;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+
+    &:nth-of-type(2) {
+      flex-direction: row-reverse;
+      margin: 60px 0;
+    }
+
+    .text {
+      background: #88888888;
+      width: 50%;
+      min-width: fit-content;
+      height: 100%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+    }
+  }
+}

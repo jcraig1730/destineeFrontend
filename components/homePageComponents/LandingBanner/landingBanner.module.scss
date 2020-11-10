@@ -1,0 +1,19 @@
+@import "../../../styles/variables.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+
+.topLandingBanner {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  .headline {
+    font-family: "Dancing Script", cursive;
+    color: $dark-green;
+    padding: 60px 60px;
+    text-align: center;
+    font-size: 3.25em;
+  }
+
+  @media (min-width: 768) {
+  }
+}
