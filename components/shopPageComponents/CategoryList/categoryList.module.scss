@@ -1,0 +1,16 @@
+@import "../../../styles/variables.scss";
+
+.categories {
+  margin: auto;
+  @media (min-width: 768px) {
+    max-width: 80%;
+  }
+  .title {
+    font-weight: 400;
+    font-size: 4em;
+    margin: 0.5em 0;
+    color: $dark-green;
+    font-family: "Dancing Script", cursive;
+    text-transform: capitalize;
+  }
+}
