@@ -4,22 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ItemCard = ({ title, price, description, mainImage, id }) => {
-  const {
-    formats: { thumbnail },
-  } = mainImage;
   return (
     <Link href={`/shop/${id}`}>
       <div className={styles.itemCard}>
-        <div className={styles.imgWrapper}>
-          <Image
-            src={thumbnail.url}
-            width={thumbnail.width}
-            height={thumbnail.height}
-            layout="fixed"
-          />
-        </div>
+        {mainImage ? (
+          <div className={styles.imgWrapper}>
+            <Image
+              src={mainImage?.formats?.thumbnail?.url}
+              width={mainImage?.formats?.thumbnail?.width}
+              height={mainImage?.formats?.thumbnail?.height}
+              layout="fixed"
+            />
+          </div>
+        ) : null}
         <h4 className={styles.title}>{title}</h4>
-        <div className={styles.price}>${price}</div>
+        <div className={styles.price}>${price.toFixed(2)}</div>
       </div>
     </Link>
   );

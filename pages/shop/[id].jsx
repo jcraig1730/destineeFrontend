@@ -13,13 +13,15 @@ const ItemDetail = ({ item }) => {
         <FontAwesomeIcon icon={["fas", "arrow-left"]} />
         Back
       </button>
-      <div className={styles.imageWrapper}>
-        <Image
-          src={item?.mainImage.url}
-          width={item?.mainImage.width}
-          height={item?.mainImage.height}
-        />
-      </div>
+      {item.mainImage ? (
+        <div className={styles.imageWrapper}>
+          <Image
+            src={item?.mainImage.url}
+            width={item?.mainImage.width}
+            height={item?.mainImage.height}
+          />
+        </div>
+      ) : null}
       <div className={styles.info}>
         <div className={styles.title}>{item?.title}</div>
         <div className={styles.price}>${item?.price}</div>
