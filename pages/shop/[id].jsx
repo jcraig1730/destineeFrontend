@@ -15,25 +15,25 @@ const ItemDetail = ({ item }) => {
       </button>
       <div className={styles.imageWrapper}>
         <Image
-          src={item.mainImage.url}
-          width={item.mainImage.width}
-          height={item.mainImage.height}
+          src={item?.mainImage.url}
+          width={item?.mainImage.width}
+          height={item?.mainImage.height}
         />
       </div>
       <div className={styles.info}>
-        <div className={styles.title}>{item.title}</div>
-        <div className={styles.price}>${item.price}</div>
+        <div className={styles.title}>{item?.title}</div>
+        <div className={styles.price}>${item?.price}</div>
         <button className={styles.btn}>
           Add{" "}
           <span className={styles.cartIcon}>
             <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
           </span>
         </button>
-        <div className={styles.description}>{item.description}</div>
+        <div className={styles.description}>{item?.description}</div>
       </div>
-      {item.images.length > 0 ? (
+      {item?.images.length > 0 ? (
         <div className={styles.imagesWrapper}>
-          {item.images.map((image) => (
+          {item?.images.map((image) => (
             <div className={styles.thumbnail}>
               <Image src={image.formats.medium.url} width={400} height={400} />
             </div>
@@ -55,7 +55,6 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   const item = await getItem(params.id);
   return {
-    revalidate: 60,
     props: {
       item,
     },
