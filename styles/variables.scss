@@ -3,3 +3,6 @@ $light-green: #dbf6e9;
 $dark-green: #9ddfd3;
 $blue: #31326f;
 $grey: #9aa6b0;
+
+// view height - navbar height + footer height
+$min-content-height: calc(100vh - 250px);

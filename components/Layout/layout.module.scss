@@ -1,3 +1,7 @@
+@import "../../styles/variables.scss";
+
 .content {
-  margin-top: 100px;
+  margin-top: 125px;
+  min-height: $min-content-height;
+  margin-bottom: 75px;
 }
