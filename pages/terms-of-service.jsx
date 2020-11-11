@@ -1,8 +1,8 @@
 import React from "react";
 import tosHTML from "../components/tos.html";
-import dompurify from "dompurify";
+import dompurify from "isomorphic-dompurify";
 
-const safeTOS = dompurify.sanitize(tosHTML);
+var safeTOS = dompurify.sanitize(tosHTML);
 
 const TermsOfService = () => {
   return <div dangerouslySetInnerHTML={{ __html: safeTOS }} />;
