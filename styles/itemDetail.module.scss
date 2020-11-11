@@ -13,9 +13,8 @@
   padding-top: 30px;
 
   > * {
-    max-width: 50%;
+    flex-basis: 50%;
   }
-
   @media (min-width: 768px) {
     flex-direction: row;
   }
