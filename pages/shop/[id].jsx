@@ -13,7 +13,7 @@ const ItemDetail = ({ item }) => {
         <FontAwesomeIcon icon={["fas", "arrow-left"]} />
         Back
       </button>
-      {item.mainImage ? (
+      {item?.mainImage ? (
         <div className={styles.imageWrapper}>
           <Image
             src={item?.mainImage.url}

@@ -33,6 +33,7 @@ const Footer = (props) => {
           </Link>
         </div>
       </div>
+      <Link href="/privacy-policy">Privacy Policy</Link>
       <div className={styles.tag}>
         Made by{" "}
         <span className={styles.hand}>
