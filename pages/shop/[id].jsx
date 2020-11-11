@@ -35,7 +35,11 @@ const ItemDetail = ({ item }) => {
         <div className={styles.imagesWrapper}>
           {item?.images.map((image) => (
             <div className={styles.thumbnail}>
-              <Image src={image.formats.medium.url} width={400} height={400} />
+              <Image
+                src={image.formats.medium?.url || image.formats.thumbnail.url}
+                width={400}
+                height={400}
+              />
             </div>
           ))}
         </div>
