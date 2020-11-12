@@ -1,6 +1,9 @@
 import axios from "axios";
 
-export const url = process.env.API_URL || "http://localhost:1337";
+export const url =
+  process.env.NODE_ENV === "production"
+    ? "http://167.172.136.197"
+    : "http://localhost:1337";
 
 export const getHomePage = async () => {
   const pageContents = await axios.get(`${url}/home`);
