@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import Link from "next/link";
 import styles from "./navbar.module.scss";
+import { url } from "../../helpers";
 
 const ExpandedModal = (props) => {
   const [target, setTarget] = useState(null);
@@ -10,10 +11,12 @@ const ExpandedModal = (props) => {
     const modal = document.createElement("div");
     body.appendChild(modal);
     body.style.overflow = "hidden";
+    body.addEventListener("click", props.closeMobileMenuOnClick);
     setTarget(modal);
     return () => {
       body.removeChild(modal);
       body.style.overflow = "scroll";
+      body.removeEventListener("click", props.closeMobileMenuOnClick);
     };
   }, []);
 
@@ -23,7 +26,11 @@ const ExpandedModal = (props) => {
         <div className={styles.expandedLinks}>
           {props.links.map((link) => (
             <div className={styles.expandedLink} key={`lnf-${link}`}>
-              <Link href={`/${link}`}>{link}</Link>
+              {link === "login" ? (
+                <Link href={`${url}/connect/google`}>{link}</Link>
+              ) : (
+                <Link href={`/${link}`}>{link}</Link>
+              )}
             </div>
           ))}
         </div>

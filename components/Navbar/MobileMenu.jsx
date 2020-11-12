@@ -13,7 +13,12 @@ const MobileMenu = (props) => {
         <div className={styles.line}></div>
         <div className={styles.line}></div>
       </div>
-      {props.mobileMenuExpanded && <ExpandedModal links={props.links} />}
+      {props.mobileMenuExpanded && (
+        <ExpandedModal
+          links={props.links}
+          closeMobileMenuOnClick={props.closeMobileMenuOnClick}
+        />
+      )}
     </div>
   );
 };

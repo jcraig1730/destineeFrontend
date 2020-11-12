@@ -4,11 +4,15 @@ import MobileMenu from "./MobileMenu";
 import FullMenu from "./FullMenu";
 import Link from "next/link";
 
-const links = ["shop", "art", "about"];
+const links = ["shop", "art", "about", "login"];
 
 const Navbar = (props) => {
   const [useMobileMenu, setUseMobileMenu] = useState(false);
   const [mobileMenuExpanded, setExpanded] = useState(false);
+
+  const closeMobileMenuOnClick = () => {
+    setExpanded(false);
+  };
 
   if (typeof window !== "undefined")
     useEffect(() => {
@@ -43,6 +47,7 @@ const Navbar = (props) => {
             mobileMenuExpanded={mobileMenuExpanded}
             setExpanded={setExpanded}
             links={links}
+            closeMobileMenuOnClick={closeMobileMenuOnClick}
           />
         ) : (
           <FullMenu links={links} />
