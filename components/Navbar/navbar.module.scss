@@ -74,6 +74,8 @@
   z-index: 1000;
 
   .expandedLinks {
+    position: relative;
+    z-index: 50;
     .expandedLink {
       color: #eee;
       margin-right: 10px;
