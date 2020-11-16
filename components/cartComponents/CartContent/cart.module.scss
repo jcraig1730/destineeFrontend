@@ -1,0 +1,61 @@
+@import "../../../styles/variables.scss";
+
+.cart {
+  width: 90%;
+  margin: auto;
+  .header {
+    font-family: $cursive;
+    color: $dark-green;
+    font-size: 3em;
+    font-weight: 600;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 1000px) {
+      flex-direction: row;
+    }
+    .itemsWrapper {
+      @media (min-width: 1000px) {
+        flex-basis: 75%;
+      }
+    }
+    .amountWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80%;
+      margin: auto;
+      text-align: center;
+      max-width: 800px;
+
+      @media (min-width: 1000px) {
+        max-width: 30%;
+      }
+
+      > * {
+        margin-bottom: 5px;
+        :nth-child(1) {
+          color: grey;
+          font-size: 1.2em;
+        }
+        :nth-child(2) {
+          font-size: 1.5em;
+        }
+      }
+      button {
+        margin-top: 40px;
+        align-self: center;
+        width: 100%;
+        font-size: 2em;
+        padding: 30px;
+        border: none;
+        border-radius: 10px;
+        background: $blue;
+        color: #fff;
+      }
+    }
+  }
+}

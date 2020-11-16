@@ -1,12 +1,16 @@
-import React from "react";
-import { getItems, getItem } from "../../helpers";
+import { getItems, getItem, url } from "../../helpers";
 import styles from "../../styles/itemDetail.module.scss";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
+import { connect } from "react-redux";
+import axios from "axios";
+import Cookie from "js-cookie";
 
-const ItemDetail = ({ item }) => {
+const ItemDetail = (props) => {
+  const { item } = props;
   const router = useRouter();
+
   return (
     <div className={styles.itemDetail}>
       <button className={styles.back} onClick={() => router.back()}>
@@ -24,8 +28,30 @@ const ItemDetail = ({ item }) => {
       ) : null}
       <div className={styles.info}>
         <div className={styles.title}>{item?.title}</div>
-        <div className={styles.price}>${item?.price}</div>
-        <button className={styles.btn}>
+        <div className={styles.price}>${item?.price.toFixed(2)}</div>
+        <button
+          onClick={() => {
+            const updatedCart = [...props.state.cart];
+            const inCart = updatedCart.find((el) => el.id === item.id);
+            if (inCart) {
+              inCart.quantity += 1;
+            } else {
+              updatedCart.push({ id: item.id, quantity: 1, item });
+            }
+            if (props.state.isAuthenticated) {
+              axios.put(
+                `${url}/carts/${props.state.userData.cart.id}`,
+                { items: updatedCart },
+                { headers: { Authorization: Cookie.get("token") } }
+              );
+            }
+            props.dispatch({
+              type: "UPDATE_CART",
+              payload: updatedCart,
+            });
+          }}
+          className={styles.btn}
+        >
           Add{" "}
           <span className={styles.cartIcon}>
             <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
@@ -68,4 +94,4 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-export default ItemDetail;
+export default connect((state) => ({ state }))(ItemDetail);

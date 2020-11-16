@@ -13,7 +13,6 @@ const Auth = (props) => {
   const router = useRouter();
   useEffect(() => {
     if (typeof window === "undefined") return;
-    console.log(props);
     Cookie.set("token", `${token}`);
   }, []);
   return <div>Welcome {props.state.userData.username}</div>;

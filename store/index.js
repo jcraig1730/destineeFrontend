@@ -14,11 +14,11 @@ const reducer = (state = initialState, action) => {
     case HYDRATE:
       return { ...state, ...action.payload };
     case "LOGIN_USER":
-      console.log("in reducer");
       return {
         ...state,
         isAuthenticated: true,
         userData: { ...action.payload },
+        cart: action.payload.cart.items,
       };
     case "LOGOUT_USER":
       return { initialState };
@@ -32,4 +32,4 @@ const reducer = (state = initialState, action) => {
 const makeStore = (context) =>
   createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
-export const wrapper = createWrapper(makeStore, { debug: true });
+export const wrapper = createWrapper(makeStore, { debug: false });
