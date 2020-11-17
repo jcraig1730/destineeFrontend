@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const url =
   process.env.NODE_ENV === "production"
-    ? "http://167.172.136.197"
+    ? "https://ryormy.com"
     : "http://localhost:1337";
 
 export const getHomePage = async () => {
