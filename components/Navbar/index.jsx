@@ -48,9 +48,11 @@ const Navbar = (props) => {
             setExpanded={setExpanded}
             links={links}
             closeMobileMenuOnClick={closeMobileMenuOnClick}
+            user={props.user}
+            cart={props.cart}
           />
         ) : (
-          <FullMenu links={links} />
+          <FullMenu cart={props.cart} user={props.user} links={links} />
         )}
       </div>
     </div>

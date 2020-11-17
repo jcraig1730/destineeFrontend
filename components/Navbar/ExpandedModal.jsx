@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Link from "next/link";
 import styles from "./navbar.module.scss";
 import { url } from "../../helpers";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ExpandedModal = (props) => {
   const [target, setTarget] = useState(null);
@@ -23,11 +24,21 @@ const ExpandedModal = (props) => {
   if (target)
     return ReactDOM.createPortal(
       <div className={styles.modal}>
+        <div className={styles.cart}>
+          <Link href="cart">
+            <FontAwesomeIcon icon={["fas", "shopping-basket"]} />
+          </Link>
+          <div className={styles.itemCount}>{props.cart.length}</div>
+        </div>
         <div className={styles.expandedLinks}>
           {props.links.map((link) => (
             <div className={styles.expandedLink} key={`lnf-${link}`}>
               {link === "login" ? (
-                <Link href={`${url}/connect/google`}>{link}</Link>
+                props.user.username ? (
+                  <Link href={`/account`}>account</Link>
+                ) : (
+                  <Link href={`${url}/connect/google`}>{link}</Link>
+                )
               ) : (
                 <Link href={`/${link}`}>{link}</Link>
               )}

@@ -17,6 +17,8 @@ const MobileMenu = (props) => {
         <ExpandedModal
           links={props.links}
           closeMobileMenuOnClick={props.closeMobileMenuOnClick}
+          user={props.user}
+          cart={props.cart}
         />
       )}
     </div>

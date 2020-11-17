@@ -39,6 +39,29 @@
         border-radius: 10px;
       }
     }
+    .basket {
+      color: $light-green;
+      font-size: 2.5em;
+      position: relative;
+      top: 8px;
+      cursor: pointer;
+
+      .itemCount {
+        background: $dark-green;
+        color: grey;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        font-size: 0.4em;
+        font-weight: 800;
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top: -20px;
+        left: 30px;
+      }
+    }
   }
 }
 
@@ -72,6 +95,30 @@
   flex-direction: column;
   align-items: center;
   z-index: 1000;
+
+  .cart {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 3em;
+    color: $light-green;
+
+    .itemCount {
+      background: $dark-green;
+      color: grey;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      font-size: 0.4em;
+      font-weight: 800;
+      width: 20px;
+      height: 20px;
+      position: relative;
+      top: -20px;
+      left: 30px;
+    }
+  }
 
   .expandedLinks {
     position: relative;

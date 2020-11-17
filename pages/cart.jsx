@@ -13,7 +13,6 @@ const Cart = ({ cart, userData, dispatch }) => {
   const updateQuantity = (item, quantity) => {
     const updatedCart = cart.map((curItem) => {
       if (curItem.item.id !== item.item.id) return curItem;
-      console.log(quantity);
       curItem.quantity =
         quantity < 0
           ? 0
