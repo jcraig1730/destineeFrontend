@@ -14,8 +14,6 @@ const LogicWrapper = (props) => {
           headers: { Authorization: token },
         });
         if (user.data) {
-          console.log(user.data.cart);
-          console.log(props.dispatch);
           props.dispatch({ type: "LOGIN_USER", payload: user.data });
         }
       }
