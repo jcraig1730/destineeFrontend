@@ -4,6 +4,7 @@ import { url } from "../../helpers";
 import axios from "axios";
 import AddressInfo from "./AddressInfo";
 import styles from "./checkout.module.scss";
+import Cookie from "js-cookie";
 
 export default function CheckoutForm({
   total,
@@ -12,49 +13,18 @@ export default function CheckoutForm({
   billingInfo,
   prevPage,
   handleBillingChange,
+  clientSecret,
+  verifyInformation,
+  billingErrors,
 }) {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setClientSecret] = useState("");
+  // const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
-  useEffect(() => {
-    (async () => {
-      const result = await axios.post(
-        url + "/sales-orders/create-payment-intent",
-        {
-          items: cart,
-          total,
-        }
-      );
-      if (!result.data?.clientSecret) {
-        setError("Something went wrong, please try again later");
-        return;
-      }
-      setClientSecret(result.data.clientSecret);
-    })();
-  }, []);
-  const cardStyle = {
-    style: {
-      base: {
-        backgroundColor: "white",
-        color: "#32325d",
-        fontFamily: "Arial, sans-serif",
-        fontSmoothing: "antialiased",
-        fontSize: "16px",
-        "::placeholder": {
-          color: "#32325d",
-        },
-      },
 
-      invalid: {
-        color: "#fa755a",
-        iconColor: "#fa755a",
-      },
-    },
-  };
   const handleChange = async (event) => {
     // Listen for changes in the CardElement
     // and display any errors as the customer types their card details
@@ -63,6 +33,8 @@ export default function CheckoutForm({
   };
   const handleSubmit = async (ev) => {
     ev.preventDefault();
+    const errors = verifyInformation();
+    if (errors) return;
     setProcessing(true);
     const payload = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
@@ -84,12 +56,13 @@ export default function CheckoutForm({
       title={"Billing Information"}
       data={billingInfo}
       handleDataChange={handleBillingChange}
-      nextButtonTitle="Submit Order"
+      nextButtonTitle="Submit"
       nextButtonClick={handleSubmit}
       nextButtonAcive={processing || disabled || succeeded}
       prevButtonTitle="Shipping"
       prevButtonClick={prevPage}
       nextLoading={processing}
+      errors={billingErrors}
     >
       <div className={styles.cardWrapper}>
         <label htmlFor="card-element">card</label>

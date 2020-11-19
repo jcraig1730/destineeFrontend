@@ -12,6 +12,7 @@ const AddressInfo = ({
   prevButtonClick,
   nextLoading,
   prevLoading,
+  errors,
   children,
 }) => {
   const sections = Object.keys(data);
@@ -23,12 +24,17 @@ const AddressInfo = ({
         return (
           <div key={`${title} ${section}`}>
             <label htmlFor={section}>{section}</label>
+
             <input
               onChange={handleDataChange}
               id={section}
               value={data[section]}
               type="text"
             />
+            {errors[section] && <span>*</span>}
+            {errors[section] && (
+              <div className={styles.err}>{section} is a required field</div>
+            )}
           </div>
         );
       })}

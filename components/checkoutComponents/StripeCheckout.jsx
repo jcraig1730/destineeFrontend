@@ -16,6 +16,9 @@ const StripeCheckout = ({
   user,
   total,
   prevPage,
+  clientSecret,
+  verifyInformation,
+  billingErrors,
 }) => {
   return (
     <div>
@@ -26,7 +29,10 @@ const StripeCheckout = ({
           submitOrder={submitOrder}
           cart={cart}
           total={total}
+          billingErrors={billingErrors}
           prevPage={prevPage}
+          clientSecret={clientSecret}
+          verifyInformation={verifyInformation}
         />
       </Elements>
     </div>

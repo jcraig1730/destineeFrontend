@@ -23,12 +23,14 @@
     display: flex;
     flex-direction: column;
     width: 90%;
+    height: 100px;
     margin: auto;
     align-items: center;
+
     :nth-child(1) {
       color: #eff;
-      width: 100%;
       font-size: 1.25em;
+      width: 100%;
     }
     :nth-child(2) {
       width: 95%;
@@ -41,6 +43,19 @@
       border-radius: 5px;
       font-size: 1.3em;
       color: #555;
+    }
+    span {
+      color: red;
+      position: relative;
+      left: 49%;
+      bottom: 67px;
+    }
+
+    .err {
+      // margin-top: -37px;
+      color: red;
+      position: relative;
+      top: -30px;
     }
   }
   // }
@@ -58,6 +73,9 @@
       color: #fff;
       font-size: 2em;
       margin: 0;
+      @media (max-width: 600px) {
+        font-size: 1.5em;
+      }
     }
     .btnRight {
       background: $dark-green;
@@ -68,16 +86,18 @@
       color: #fff;
       font-size: 2em;
       margin: 0;
+      @media (max-width: 600px) {
+        font-size: 1.5em;
+      }
     }
   }
 }
 
 .cardWrapper {
   margin-bottom: 30px;
-  .error {
+  .err {
     color: red;
     font-size: 0.95em;
-    display: flex;
   }
 }
 

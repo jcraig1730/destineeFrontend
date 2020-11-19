@@ -6,7 +6,6 @@ import axios from "axios";
 import { getSubtotal, getTax, getTotal, url } from "../helpers";
 import Cookie from "js-cookie";
 import AddressInfo from "../components/checkoutComponents/AddressInfo";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 
 const addressInfo = { name: "", address: "", city: "", zip: "", state: "" };
@@ -14,7 +13,12 @@ const addressInfo = { name: "", address: "", city: "", zip: "", state: "" };
 const Checkout = ({ isAuthenticated, user, cart, shipping, dispatch }) => {
   const [stage, setStage] = useState(0);
   const [shippingInfo, setShippingInfo] = useState({ ...addressInfo });
+  const [shippingErrors, setShippingErrors] = useState({});
   const [billingInfo, setBillingInfo] = useState({ ...addressInfo });
+  const [billingErrors, setBillingErrors] = useState({});
+
+  const [clientSecret, setClientSecret] = useState("");
+
   const router = useRouter();
   const handleShippingChange = (e) => {
     setShippingInfo({ ...shippingInfo, [e.target.id]: e.target.value });
@@ -29,13 +33,44 @@ const Checkout = ({ isAuthenticated, user, cart, shipping, dispatch }) => {
     }
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      const result = await axios.post(
+        url + "/sales-orders/create-payment-intent",
+        {
+          items: cart,
+          total: getTotal(cart, shipping),
+        },
+        { headers: { Authorization: Cookie.get("token") } }
+      );
+      if (!result.data?.clientSecret) {
+        setError("Something went wrong, please try again later");
+        return;
+      }
+      setClientSecret(result.data.clientSecret);
+    })();
+  }, []);
+
+  const verifyInformation = () => {
+    const errors = Object.keys(billingInfo).reduce((errObj, dataPoint) => {
+      if (!billingInfo[dataPoint]) errObj[dataPoint] = true;
+      return errObj;
+    }, {});
+    if (Object.keys(errors).length > 0) {
+      setBillingErrors(errors);
+      return true;
+    }
+    setBillingErrors({});
+    return null;
+  };
+
   const submitOrder = async (paymentId) => {
     const payload = {
       shippingAddress: shippingInfo,
       billingAddress: billingInfo,
       user,
       items: cart,
-      total: getTotal(cart),
+      total: getTotal(cart, shipping),
       subtotal: getSubtotal(cart),
       tax: getTax(cart),
       shipping: shipping || 0,
@@ -57,21 +92,37 @@ const Checkout = ({ isAuthenticated, user, cart, shipping, dispatch }) => {
     <AddressInfo
       title="Shipping Information"
       data={shippingInfo}
+      errors={shippingErrors}
       handleDataChange={handleShippingChange}
       nextButtonTitle={`Next`}
-      nextButtonClick={() => {
+      nextButtonClick={(e) => {
+        e.preventDefault();
+        const errors = Object.keys(shippingInfo).reduce((errObj, dataPoint) => {
+          if (!shippingInfo[dataPoint]) errObj[dataPoint] = true;
+          return errObj;
+        }, {});
+        if (Object.keys(errors).length > 0) {
+          return setShippingErrors(errors);
+        }
+        setShippingErrors({});
         setStage(stage + 1);
-        // window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
       }}
     />,
     <StripeCheckout
       billingInfo={billingInfo}
+      billingErrors={billingErrors}
       handleChange={handleBillingChange}
       cart={cart}
       user={user}
       submitOrder={submitOrder}
-      prevPage={() => setStage(stage - 1)}
+      prevPage={() => {
+        setStage(stage - 1);
+        window.scrollTo(0, 0);
+      }}
       total={getTotal(cart, shipping)}
+      clientSecret={clientSecret}
+      verifyInformation={verifyInformation}
     />,
   ];
   return (
