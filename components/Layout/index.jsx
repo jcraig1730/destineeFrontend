@@ -20,7 +20,9 @@ const LogicWrapper = (props) => {
     })();
   }, []);
 
-  return <Layout user={props.user} cart={props.cart} />;
+  return (
+    <Layout user={props.user} cart={props.cart} children={props.children} />
+  );
 };
 
 const mapStateToProps = (state) => ({
