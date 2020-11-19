@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./cart.module.scss";
 import CartItems from "../CartItems";
+import Link from "next/link";
 
 const CartContent = ({ cart, cartId, removeItem, updateQuantity, user }) => {
   const subtotal = cart.reduce(
@@ -14,31 +15,37 @@ const CartContent = ({ cart, cartId, removeItem, updateQuantity, user }) => {
       <h1 className={styles.header}>
         {user && `${user.slice(0, 1).toUpperCase() + user.slice(1)}'s `}Cart
       </h1>
-      <div className={styles.content}>
-        <div className={styles.itemsWrapper}>
-          <CartItems
-            cart={cart}
-            cartId={cartId}
-            removeItem={removeItem}
-            updateQuantity={updateQuantity}
-          />
+      {cart.length > 0 ? (
+        <div className={styles.content}>
+          <div className={styles.itemsWrapper}>
+            <CartItems
+              cart={cart}
+              cartId={cartId}
+              removeItem={removeItem}
+              updateQuantity={updateQuantity}
+            />
+          </div>
+          <div className={styles.amountWrapper}>
+            <div className={styles.subtotal}>
+              <div>Subtotal</div>
+              <div>${subtotal.toFixed(2)}</div>
+            </div>
+            <div className={styles.tax}>
+              <div>Tax</div>
+              <div>${tax.toFixed(2)}</div>
+            </div>
+            <div className={styles.total}>
+              <div>Total</div>
+              <div>${total.toFixed(2)}</div>
+            </div>
+            <Link href="/checkout">
+              <button active={cart.length > 0}> Checkout</button>
+            </Link>
+          </div>
         </div>
-        <div className={styles.amountWrapper}>
-          <div className={styles.subtotal}>
-            <div>Subtotal</div>
-            <div>${subtotal.toFixed(2)}</div>
-          </div>
-          <div className={styles.tax}>
-            <div>Tax</div>
-            <div>${tax.toFixed(2)}</div>
-          </div>
-          <div className={styles.total}>
-            <div>Total</div>
-            <div>${total.toFixed(2)}</div>
-          </div>
-          <button>Checkout</button>
-        </div>
-      </div>
+      ) : (
+        <div>Nothing in cart</div>
+      )}
     </div>
   );
 };

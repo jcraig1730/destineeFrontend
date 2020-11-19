@@ -1,3 +1,4 @@
+import { faShippingFast } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 export const url =
@@ -23,4 +24,20 @@ export const getItems = async () => {
 export const getItem = async (id) => {
   const item = await axios.get(`${url}/items/${id}`);
   return item.data;
+};
+
+export const getSubtotal = (cart) => {
+  return Number(
+    cart
+      .reduce((total, item) => total + item.quantity * item.item.price, 0)
+      .toFixed(2)
+  );
+};
+
+export const getTax = (cart) => {
+  return Number((getSubtotal(cart) * 0.0825).toFixed(2));
+};
+
+export const getTotal = (cart, shipping = 0) => {
+  return Number((getSubtotal(cart) + getTax(cart) + shipping).toFixed(2));
 };

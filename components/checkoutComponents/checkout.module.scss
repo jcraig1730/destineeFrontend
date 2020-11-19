@@ -1,0 +1,90 @@
+@import "../../styles/variables.scss";
+
+.addressInfo {
+  margin: auto;
+  margin-top: 50px;
+  width: 90%;
+  background: $pink;
+  padding: 50px 0 75px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 15px;
+  max-width: 800px;
+  .headline {
+    margin: 0 0 30px 10%;
+    color: #fff;
+    font-size: 2.5em;
+    font-weight: 300;
+    max-width: 75%;
+  }
+
+  > * {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+    :nth-child(1) {
+      color: #eff;
+      width: 100%;
+      font-size: 1.25em;
+    }
+    :nth-child(2) {
+      width: 95%;
+      padding: 10px;
+      border: none;
+      background: #fff;
+      height: 45px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      font-size: 1.3em;
+      color: #555;
+    }
+  }
+  // }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .btnLeft {
+      background: $dark-green;
+      width: 45%;
+      height: 75px;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 2em;
+      margin: 0;
+    }
+    .btnRight {
+      background: $dark-green;
+      width: 45%;
+      height: 75px;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 2em;
+      margin: 0;
+    }
+  }
+}
+
+.cardWrapper {
+  margin-bottom: 30px;
+  .error {
+    color: red;
+    font-size: 0.95em;
+    display: flex;
+  }
+}
+
+.card {
+  font-size: 2em !important;
+  margin-bottom: 5px !important;
+  :first-child {
+    font-size: 2em;
+  }
+}
