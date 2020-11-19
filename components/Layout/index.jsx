@@ -1,17 +1,28 @@
-import React from "react";
-import styles from "./layout.module.scss";
-import Navbar from "../Navbar";
-import Footer from "../Footer";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import Cookie from "js-cookie";
+import axios from "axios";
+import { url } from "../../helpers";
+import Layout from "./Layout";
 
-const Layout = (props) => {
-  return (
-    <div className={styles.layout}>
-      <Navbar user={props.user} cart={props.cart} />
-      <main className={styles.content}>{props.children}</main>
-      <Footer />
-    </div>
-  );
+const LogicWrapper = (props) => {
+  useEffect(() => {
+    (async () => {
+      const token = Cookie.get("token");
+      if (token) {
+        const user = await axios.get(url + "/users/me", {
+          headers: { Authorization: token },
+        });
+        if (user.data) {
+          console.log(user.data.cart);
+          console.log(props.dispatch);
+          props.dispatch({ type: "LOGIN_USER", payload: user.data });
+        }
+      }
+    })();
+  }, []);
+
+  return <Layout user={props.user} cart={props.cart} />;
 };
 
 const mapStateToProps = (state) => ({
@@ -19,4 +30,4 @@ const mapStateToProps = (state) => ({
   cart: state.cart,
 });
 
-export default connect(mapStateToProps)(Layout);
+export default connect(mapStateToProps)(LogicWrapper);
