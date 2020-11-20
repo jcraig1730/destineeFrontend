@@ -7,6 +7,7 @@ const initialState = {
   isAuthenticated: false,
   userData: {},
   cart: [],
+  cartModalActive: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +25,10 @@ const reducer = (state = initialState, action) => {
       return { initialState };
     case "UPDATE_CART":
       return { ...state, cart: action.payload };
+    case "SHOW_CART_MODAL":
+      return { ...state, cartModalActive: true };
+    case "CLOSE_CART_MODAL":
+      return { ...state, cartModalActive: false };
     default:
       return state;
   }

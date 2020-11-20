@@ -21,13 +21,20 @@ const LogicWrapper = (props) => {
   }, []);
 
   return (
-    <Layout user={props.user} cart={props.cart} children={props.children} />
+    <Layout
+      user={props.user}
+      cart={props.cart}
+      children={props.children}
+      cartModalActive={props.cartModalActive}
+      closeModal={() => props.dispatch({ type: "CLOSE_CART_MODAL" })}
+    />
   );
 };
 
 const mapStateToProps = (state) => ({
   user: state.userData,
   cart: state.cart,
+  cartModalActive: state.cartModalActive,
 });
 
 export default connect(mapStateToProps)(LogicWrapper);

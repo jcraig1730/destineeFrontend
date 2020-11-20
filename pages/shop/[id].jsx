@@ -49,6 +49,7 @@ const ItemDetail = (props) => {
               type: "UPDATE_CART",
               payload: updatedCart,
             });
+            props.dispatch({ type: "SHOW_CART_MODAL" });
           }}
           className={styles.btn}
         >
