@@ -85,7 +85,7 @@ const Checkout = ({ isAuthenticated, user, cart, shipping, dispatch }) => {
 
     dispatch({ type: "UPDATE_CART", payload: [] });
 
-    // router.push("/orders/" + order.id);
+    router.push("/orders/" + order.id);
   };
 
   const stages = [

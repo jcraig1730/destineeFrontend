@@ -1,0 +1,41 @@
+@import "../../styles/variables.scss";
+
+.orderDetail {
+  .message {
+    font-size: 1.5em;
+  }
+  .orderId {
+    margin-top: 10px;
+  }
+  .items {
+    margin-top: 20px;
+    .item {
+      display: flex;
+      > * {
+        width: 25%;
+        margin: 10px 0;
+      }
+      .itemTitle {
+      }
+      .itemPrice {
+      }
+      .itemQuantity {
+      }
+      .itemTotal {
+      }
+    }
+  }
+  .totals {
+    width: fit-content;
+    margin: auto;
+    margin-top: 30px;
+    .subtotal {
+    }
+    .shipping {
+    }
+    .tax {
+    }
+    .total {
+    }
+  }
+}
