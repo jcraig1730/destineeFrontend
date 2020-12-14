@@ -29,6 +29,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, cartModalActive: true };
     case "CLOSE_CART_MODAL":
       return { ...state, cartModalActive: false };
+    case "UPDATE_USERDATA":
+      return { ...state, userData: { ...userData, ...payload } };
     default:
       return state;
   }

@@ -1,0 +1,16 @@
+.wrapper {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  @media (min-width: 992px) {
+    margin: inherit;
+  }
+
+  .save {
+    margin: auto;
+    width: 80%;
+    justify-self: center;
+  }
+}

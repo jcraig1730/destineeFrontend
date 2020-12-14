@@ -1,0 +1,23 @@
+@import "../../styles/variables.scss";
+.col {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin-left: 80px;
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2em;
+    font-size: 1.4em;
+    width: min(700px, 80vw);
+    &:hover {
+      cursor: pointer;
+      background: $pink;
+    }
+
+    > * {
+      flex-basis: 33%;
+    }
+  }
+}
