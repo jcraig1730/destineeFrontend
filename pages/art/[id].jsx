@@ -2,7 +2,8 @@ import React from "react";
 import { getArtDetail, getArtIndex } from "../../helpers";
 import ArtDetailPage from "../../components/ArtDetailPage";
 
-const ArtDetail = ({ project }) => <ArtDetailPage project={project} />;
+const ArtDetail = ({ project }) =>
+  project ? <ArtDetailPage project={project} /> : <div>Loading</div>;
 
 export const getStaticPaths = async () => {
   const projects = await getArtIndex();
