@@ -8,6 +8,8 @@ import Cookie from "js-cookie";
 
 export default function CheckoutForm({
   total,
+  subtotal,
+  tax,
   cart,
   submitOrder,
   billingInfo,
@@ -52,41 +54,37 @@ export default function CheckoutForm({
     }
   };
   return (
-    <AddressInfo
-      title={"Billing Information"}
-      data={billingInfo}
-      handleDataChange={handleBillingChange}
-      nextButtonTitle="Submit"
-      nextButtonClick={handleSubmit}
-      nextButtonAcive={processing || disabled || succeeded}
-      prevButtonTitle="Shipping"
-      prevButtonClick={prevPage}
-      nextLoading={processing}
-      errors={billingErrors}
-    >
-      <div className={styles.cardWrapper}>
-        <label htmlFor="card-element">card</label>
-        <CardElement
-          id="card-element"
-          onChange={handleChange}
-          className={styles.card}
-        />
-        {/* Show any error that happens when processing the payment */}
-        {error && (
-          <div className={styles.error} role="alert">
-            {error}
-          </div>
-        )}
-        {/* Show a success message upon completion */}
-        <p className={succeeded ? "result-message" : "result-message hidden"}>
-          Payment succeeded, see the result in your
-          <a href={`https://dashboard.stripe.com/test/payments`}>
-            {" "}
-            Stripe dashboard.
-          </a>{" "}
-          Refresh the page to pay again.
-        </p>
-      </div>
-    </AddressInfo>
+    <div>
+      <AddressInfo
+        title={"Billing Information"}
+        data={billingInfo}
+        handleDataChange={handleBillingChange}
+        nextButtonTitle="Submit"
+        nextButtonClick={handleSubmit}
+        nextButtonAcive={processing || disabled || succeeded}
+        prevButtonTitle="Shipping"
+        prevButtonClick={prevPage}
+        nextLoading={processing}
+        errors={billingErrors}
+        subtotal={subtotal}
+        tax={tax}
+        total={total}
+      >
+        <div className={styles.cardWrapper}>
+          <label htmlFor="card-element">card</label>
+          <CardElement
+            id="card-element"
+            onChange={handleChange}
+            className={styles.card}
+          />
+          {/* Show any error that happens when processing the payment */}
+          {error && (
+            <div className={styles.error} role="alert">
+              {error}
+            </div>
+          )}
+        </div>
+      </AddressInfo>
+    </div>
   );
 }

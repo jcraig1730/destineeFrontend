@@ -7,10 +7,16 @@ import { getSubtotal, getTax, getTotal, url } from "../helpers";
 import Cookie from "js-cookie";
 import AddressInfo from "../components/checkoutComponents/AddressInfo";
 import { useRouter } from "next/router";
-
-const addressInfo = { name: "", address: "", city: "", zip: "", state: "" };
+import ConfirmOrder from "../components/checkoutComponents/ConfirmOrder";
 
 const Checkout = ({ isAuthenticated, user, cart, shipping, dispatch }) => {
+  const addressInfo = {
+    name: `${user.firstName} ${user.lastName}` || "",
+    address: user.address || "",
+    city: user.city || "",
+    zip: user.zip || "",
+    state: user.state || "",
+  };
   const [stage, setStage] = useState(0);
   const [shippingInfo, setShippingInfo] = useState({ ...addressInfo });
   const [shippingErrors, setShippingErrors] = useState({});
@@ -91,6 +97,9 @@ const Checkout = ({ isAuthenticated, user, cart, shipping, dispatch }) => {
   const stages = [
     <AddressInfo
       title="Shipping Information"
+      total={getTotal(cart, shipping)}
+      subtotal={getSubtotal(cart)}
+      tax={getTax(cart)}
       data={shippingInfo}
       errors={shippingErrors}
       handleDataChange={handleShippingChange}
@@ -120,9 +129,17 @@ const Checkout = ({ isAuthenticated, user, cart, shipping, dispatch }) => {
         setStage(stage - 1);
         window.scrollTo(0, 0);
       }}
+      tax={getTax(cart)}
+      subtotal={getSubtotal(cart)}
       total={getTotal(cart, shipping)}
       clientSecret={clientSecret}
       verifyInformation={verifyInformation}
+    />,
+    <ConfirmOrder
+      billingAddress={billingInfo}
+      shippingAddress={shippingInfo}
+      total={getTotal(cart, shipping)}
+      orderDetails={cart}
     />,
   ];
   return (
