@@ -1,0 +1,26 @@
+@import "../../styles/variables.scss";
+
+.wrapper {
+  .headline {
+    font-family: $cursive;
+    font-weight: 300;
+    color: $dark-green;
+    font-size: 4em;
+    margin-left: min(80px, 10%);
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    font-size: 1.5em;
+    > * {
+      img {
+        width: 100%;
+        max-width: 700px;
+        float: right;
+      }
+    }
+  }
+}

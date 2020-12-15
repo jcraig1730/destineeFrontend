@@ -51,3 +51,8 @@ export const getArtDetail = async (id) => {
   const { data } = await axios.get(`${url}/arts/${id}`);
   return data;
 };
+
+export const getAboutPage = async () => {
+  const { data } = await axios.get(`${url}/about`);
+  return data;
+};
