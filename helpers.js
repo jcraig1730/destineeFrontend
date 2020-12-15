@@ -41,3 +41,13 @@ export const getTax = (cart) => {
 export const getTotal = (cart, shipping = 0) => {
   return Number((getSubtotal(cart) + getTax(cart) + shipping).toFixed(2));
 };
+
+export const getArtIndex = async () => {
+  const artProjects = await axios.get(`${url}/arts`);
+  return artProjects.data;
+};
+
+export const getArtDetail = async (id) => {
+  const { data } = await axios.get(`${url}/arts/${id}`);
+  return data;
+};
