@@ -1,4 +1,3 @@
-import { faDivide } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 const FavoriteInfo = ({ favorites }) => {

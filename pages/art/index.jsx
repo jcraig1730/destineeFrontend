@@ -6,7 +6,6 @@ import styles from "../../styles/art.module.scss";
 const Art = ({ artProjects }) => <ArtIndexPage artProjects={artProjects} />;
 
 export const getStaticProps = async () => {
-  console.log("get props");
   const artProjects = await getArtIndex();
   return {
     revalidate: 50,

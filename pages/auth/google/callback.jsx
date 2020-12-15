@@ -14,8 +14,9 @@ const Auth = (props) => {
   useEffect(() => {
     if (typeof window === "undefined") return;
     Cookie.set("token", `${token}`);
+    router.replace(Cookie.get("prev"));
   }, []);
-  return <div>Welcome {props.state.userData.username}</div>;
+  return <div>Loading</div>;
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
