@@ -1,0 +1,24 @@
+@import "../../styles/variables.scss";
+
+.wrapper {
+  background: #66666666;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    background: $pink;
+    color: #fff;
+    border: 5px solid $dark-green;
+    padding: 30px;
+    border-radius: 10px;
+    font-size: 2em;
+    max-width: 80vw;
+  }
+}

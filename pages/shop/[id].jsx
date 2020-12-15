@@ -6,8 +6,11 @@ import { useRouter } from "next/router";
 import { connect } from "react-redux";
 import axios from "axios";
 import Cookie from "js-cookie";
+import GenericModal from "../../components/GenericModal";
+import { useState } from "react";
 
 const ItemDetail = (props) => {
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const { item } = props;
   const router = useRouter();
 
@@ -33,6 +36,9 @@ const ItemDetail = (props) => {
           onClick={() => {
             const updatedCart = [...props.state.cart];
             const inCart = updatedCart.find((el) => el.id === item.id);
+            if (!props.state.isAuthenticated) {
+              return setShowLoginModal(true);
+            }
             if (inCart) {
               inCart.quantity += 1;
             } else {
@@ -73,6 +79,33 @@ const ItemDetail = (props) => {
           ))}
         </div>
       ) : null}
+      {showLoginModal && (
+        <GenericModal>
+          <div>
+            <div
+              style={{
+                width: "fit-content",
+                float: "right",
+                marginTop: "-50px",
+                cursor: "pointer",
+              }}
+              onClick={() => setShowLoginModal(false)}
+            >
+              X
+            </div>
+            <p>Please login to continue!</p>
+            <p>
+              <a
+                style={{ textDecoration: "underline" }}
+                href={`${url}/connect/google`}
+                onClick={() => Cookie.set("prev", location.pathname)}
+              >
+                Click here to login or create an account
+              </a>
+            </p>
+          </div>
+        </GenericModal>
+      )}
     </div>
   );
 };
