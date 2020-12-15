@@ -10,7 +10,6 @@ const Cart = ({ cart, userData, dispatch }) => {
     const updatedCart = cart.filter(
       (curItem) => curItem.item.id !== item.item.id
     );
-    console.log(updatedCart);
     axios.put(
       `${url}/carts/${cartId}`,
       { items: updatedCart },

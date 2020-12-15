@@ -8,6 +8,7 @@ import axios from "axios";
 import Cookie from "js-cookie";
 import GenericModal from "../../components/GenericModal";
 import { useState } from "react";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const ItemDetail = (props) => {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -26,6 +27,7 @@ const ItemDetail = (props) => {
             src={item?.mainImage.url}
             width={item?.mainImage.width}
             height={item?.mainImage.height}
+            placeholder={<LoadingSpinner />}
           />
         </div>
       ) : null}
@@ -74,6 +76,7 @@ const ItemDetail = (props) => {
                 src={image.formats.medium?.url || image.formats.thumbnail.url}
                 width={400}
                 height={400}
+                placeholder={<LoadingSpinner />}
               />
             </div>
           ))}

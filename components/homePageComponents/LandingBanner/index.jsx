@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./landingBanner.module.scss";
 import Image from "next/image";
+import LoadingSpinner from "../../LoadingSpinner";
 
 const LandingBanner = ({ headline, image }) => {
   return (
@@ -11,6 +12,7 @@ const LandingBanner = ({ headline, image }) => {
         layout="intrinsic"
         width={image.width}
         height={image.height}
+        placeholder={<LoadingSpinner />}
       />
     </div>
   );

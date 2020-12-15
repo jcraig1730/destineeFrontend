@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./artDetailPage.module.scss";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
+import LoadingSpinner from "../LoadingSpinner";
 
 const ArtDetailPage = ({ project }) => {
   return (
@@ -14,6 +15,7 @@ const ArtDetailPage = ({ project }) => {
           height={project.coverImage.height}
           width={project.coverImage.width}
           layout="responsive"
+          placeholder={<LoadingSpinner />}
         />
       </div>
       <ReactMarkdown

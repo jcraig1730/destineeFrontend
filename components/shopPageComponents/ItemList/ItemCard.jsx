@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./itemList.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import LoadingSpinner from "../../LoadingSpinner";
 
 const ItemCard = ({ title, price, description, mainImage, id }) => {
   return (
@@ -14,6 +15,7 @@ const ItemCard = ({ title, price, description, mainImage, id }) => {
               width={mainImage?.formats?.thumbnail?.width}
               height={mainImage?.formats?.thumbnail?.height}
               layout="fixed"
+              placeholder={<LoadingSpinner />}
             />
           </div>
         ) : null}

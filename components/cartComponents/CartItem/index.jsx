@@ -4,6 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import { url } from "../../../helpers";
 import Cookie from "js-cookie";
+import LoadingSpinner from "../../LoadingSpinner";
 
 const CartItem = ({ item, cartId, cart, updateQuantity, removeItem }) => {
   const price = (item.item.price * item.quantity).toFixed(2);
@@ -15,6 +16,7 @@ const CartItem = ({ item, cartId, cart, updateQuantity, removeItem }) => {
           src={item.item.mainImage?.formats?.thumbnail?.url}
           height={100}
           width={100}
+          placeholder={<LoadingSpinner />}
         />
         <div className={styles.btnWrapper}>
           <button

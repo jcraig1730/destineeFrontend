@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import LoadingSpinner from "../LoadingSpinner";
 import styles from "./artIndexPage.module.scss";
 
 const ArtIndexPage = ({ artProjects }) => {
@@ -12,7 +13,12 @@ const ArtIndexPage = ({ artProjects }) => {
           <Link href={`/art/${project.id}`} passHref>
             <div className={styles.linkWrapper}>
               <div className={styles.imgWrapper}>
-                <Image src={project.coverImage.url} height={100} width={100} />
+                <Image
+                  src={project.coverImage.url}
+                  height={100}
+                  width={100}
+                  placeholder={<LoadingSpinner />}
+                />
               </div>
               <div className={styles.details}>
                 <h3 className={styles.title}>{project.title}</h3>

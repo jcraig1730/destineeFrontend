@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import LoadingSpinner from "../LoadingSpinner";
 import styles from "./checkout.module.scss";
 
 const AddressInfo = ({
@@ -55,7 +57,11 @@ const AddressInfo = ({
       <div className={styles.buttons}>
         {prevButtonTitle && prevButtonClick && (
           <button className={styles.btnLeft} onClick={prevButtonClick}>
-            {prevLoading ? "spinner" : prevButtonTitle}
+            {prevLoading ? (
+              <LoadingSpinner color="white" fontSize="1.5em" />
+            ) : (
+              prevButtonTitle
+            )}
           </button>
         )}
 
@@ -67,7 +73,11 @@ const AddressInfo = ({
             {...(() =>
               nextButtonAcive ? { style: { background: "grey" } } : {})()}
           >
-            {nextLoading ? "spinner" : nextButtonTitle}
+            {nextLoading ? (
+              <LoadingSpinner color="white" fontSize="1.5em" />
+            ) : (
+              nextButtonTitle
+            )}
           </button>
         )}
       </div>
