@@ -17,7 +17,10 @@ const CartItem = ({ item, cartId, cart, updateQuantity, removeItem }) => {
           width={100}
         />
         <div className={styles.btnWrapper}>
-          <button className={styles.btn} onClick={() => removeItem(item)}>
+          <button
+            className={styles.btn}
+            onClick={() => removeItem(item, cartId)}
+          >
             Remove
           </button>
           {/* <div>Qty: {item.quantity}</div> */}

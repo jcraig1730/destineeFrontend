@@ -1,11 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import CartContent from "../components/cartComponents/CartContent";
+import axios from "axios";
+import { url } from "../helpers";
+import Cookie from "js-cookie";
 
 const Cart = ({ cart, userData, dispatch }) => {
-  const removeItem = (item) => {
+  const removeItem = (item, cartId = userData.cart.id) => {
     const updatedCart = cart.filter(
       (curItem) => curItem.item.id !== item.item.id
+    );
+    console.log(updatedCart);
+    axios.put(
+      `${url}/carts/${cartId}`,
+      { items: updatedCart },
+      { headers: { Authorization: Cookie.get("token") } }
     );
     dispatch({ type: "UPDATE_CART", payload: updatedCart });
   };
@@ -21,6 +30,11 @@ const Cart = ({ cart, userData, dispatch }) => {
           : quantity;
       return curItem;
     });
+    axios.put(
+      `${url}/carts/${userData.cart.id}`,
+      { items: updatedCart },
+      { headers: { Authorization: Cookie.get("token") } }
+    );
     dispatch({ type: "UPDATE_CART", payload: updatedCart });
   };
   return (
