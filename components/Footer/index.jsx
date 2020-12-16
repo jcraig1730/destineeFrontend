@@ -13,12 +13,12 @@ const Footer = (props) => {
           </Link>
         </div>
         <div className={styles.followLink}>
-          <Link href="">
+          <Link href="https://www.facebook.com/DestieAntilley">
             <FontAwesomeIcon icon={["fab", "facebook"]} />
           </Link>
         </div>
         <div className={styles.followLink}>
-          <Link href="">
+          <Link href="https://www.pinterest.se/destangel7/_saved/">
             <FontAwesomeIcon icon={["fab", "pinterest"]} />
           </Link>
         </div>
@@ -34,7 +34,9 @@ const Footer = (props) => {
         </div>
       </div>
       <Link href="/privacy-policy">Privacy Policy</Link>
-      <Link href="/terms-of-service">Terms of Service</Link>
+      <a href="https://ryormy.com/destinee-tos" target="blank">
+        Terms of Service
+      </a>
       <div className={styles.tag}>
         Made by{" "}
         <span className={styles.hand}>

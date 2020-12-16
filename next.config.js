@@ -14,4 +14,13 @@ module.exports = {
     // Important: return the modified config
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: "/terms-of-service",
+        destination: "https://ryormy.com/destinee-tos",
+        permanent: true,
+      },
+    ];
+  },
 };
