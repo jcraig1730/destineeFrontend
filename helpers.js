@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const url =
   process.env.NODE_ENV === "production"
-    ? "https://ryormy.com"
+    ? "https://ryormy.com/cms"
     : "http://localhost:1337";
 
 export const getHomePage = async () => {
